@@ -4,26 +4,25 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.*
 import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
-import com.shamweel.livereaction.databinding.LayoutLiveReactionBinding
 import kotlin.random.Random
 
 
 class LiveReactionView : FrameLayout {
 
+    private var imageviewReactionSource: AppCompatImageView? = null
+    private var container: FrameLayout? = null
+
     private var duration: Long = 3500L
-    private val scaleDuration : Long = 500
+    private val scaleDuration: Long = 500
     private val opaqueAlpha = 255
-    private var binding: LayoutLiveReactionBinding? = null
     private var maxOnScreenCount = 30
 
     constructor(context: Context) : super(context) {
@@ -35,19 +34,16 @@ class LiveReactionView : FrameLayout {
     }
 
     private fun init() {
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.layout_live_reaction,
-            this,
-            true
-        )
+        val view = inflate(context, R.layout.layout_live_reaction, this)
+        imageviewReactionSource = view.findViewById(R.id.imageview_reaction_source)
+        container = view.findViewById(R.id.container)
     }
 
     /**
      * Can be used to set Max Floating Reactions on Screen at instant of time
      * @param maxOnScreenCount : Maximmum number fo floating reactions on-screen
      */
-    fun setOnScreenMaxReactionCount(maxOnScreenCount: Int){
+    fun setOnScreenMaxReactionCount(maxOnScreenCount: Int) {
         this.maxOnScreenCount = maxOnScreenCount
     }
 
@@ -58,12 +54,12 @@ class LiveReactionView : FrameLayout {
      * @param duration : The duration to on-screen animation
      */
     fun performLiveReaction(drawableRes: Int, isSelf: Boolean = false, duration: Long? = null) {
-        if (!isSelf && !isRoomAvailableForNewReaction()) { return }
+        if (!isSelf && !isRoomAvailableForNewReaction()) {
+            return
+        }
         duration?.let { this.duration = it }
-        val reactionSourceImageView = binding?.imageviewReactionSource
-        val container = binding?.container
 
-        disableAllParentClip(reactionSourceImageView)
+        disableAllParentClip(imageviewReactionSource)
         val floatingImageView = getFloatingImageView(drawableRes, container)
         startFlyingAnimation(floatingImageView)
         startFadingAnimation(floatingImageView, container)
@@ -72,12 +68,12 @@ class LiveReactionView : FrameLayout {
     /**
      * Checks whether room is available to add new reaction on-screen
      */
-    private fun isRoomAvailableForNewReaction() = (binding?.container?.childCount?:0) <= maxOnScreenCount
+    private fun isRoomAvailableForNewReaction() = (container?.childCount ?: 0) <= maxOnScreenCount
 
     private fun getFloatingImageView(drawableRes: Int, container: ViewGroup?): AppCompatImageView {
         val image = AppCompatImageView(context)
             .apply {
-                layoutParams = binding?.imageviewReactionSource?.layoutParams
+                layoutParams = imageviewReactionSource?.layoutParams
                 setImageDrawable(ContextCompat.getDrawable(context, drawableRes))
                 drawable.alpha = opaqueAlpha
             }
@@ -186,9 +182,9 @@ class LiveReactionView : FrameLayout {
      * Can be used to remove all floating Reactions On-Screen
      */
     fun clearReactionView() {
-        val childCount = binding?.container?.childCount ?: 0
+        val childCount = container?.childCount ?: 0
         if (childCount > 0) {
-            binding?.container?.removeViews(1, childCount - 1)
+            container?.removeViews(1, childCount - 1)
         }
     }
 

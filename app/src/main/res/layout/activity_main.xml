@@ -6,4 +6,104 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.1"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="52sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.shamweel.livereaction.LiveReactionView
+        android:id="@+id/liveReactionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fab"
+        app:layout_constraintEnd_toEndOf="@id/fab"
+        app:layout_constraintStart_toStartOf="@id/fab" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fabSecond"
+        app:srcCompat="@drawable/ic_heart_filled_red"
+        app:tint="@color/red" />
+
+
+    <com.shamweel.livereaction.LiveReactionView
+        android:id="@+id/liveReactionViewSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fabSecond"
+        app:layout_constraintEnd_toEndOf="@id/fabSecond"
+        app:layout_constraintStart_toStartOf="@id/fabSecond" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/fab"
+        app:layout_constraintEnd_toStartOf="@+id/fab"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fabThird"
+        app:srcCompat="@drawable/ic_heart_filled_yellow"
+        app:tint="@color/yellow" />
+
+    <com.shamweel.livereaction.LiveReactionView
+        android:id="@+id/liveReactionViewThird"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fabThird"
+        app:layout_constraintEnd_toEndOf="@id/fabThird"
+        app:layout_constraintStart_toStartOf="@id/fabThird" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabThird"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/fabSecond"
+        app:layout_constraintEnd_toStartOf="@+id/fabSecond"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fabFourth"
+        app:srcCompat="@drawable/ic_heart_filled_purple"
+        app:tint="@color/purple_500"
+        />
+
+    <com.shamweel.livereaction.LiveReactionView
+        android:id="@+id/liveReactionViewFourth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/fabFourth"
+        app:layout_constraintEnd_toEndOf="@id/fabFourth"
+        app:layout_constraintStart_toStartOf="@id/fabFourth" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabFourth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fabThird"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_stack" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
