@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val reactionViewThird = findViewById<LiveReactionView>(R.id.liveReactionViewThird)
         val fabThird = findViewById<FloatingActionButton>(R.id.fabThird)
+        reactionViewThird.setOnScreenMaxReactionCount(10)
 
         fabThird.setOnClickListener {
             reactionViewThird.performLiveReaction(R.drawable.ic_heart_filled_purple)
@@ -51,7 +52,11 @@ class MainActivity : AppCompatActivity() {
                 R.drawable.ic_demo_8,
                 R.drawable.ic_demo_9
             ).random()
-            reactionViewFourth.performLiveReaction(drawableRes)
+            reactionViewFourth.performLiveReaction(
+                drawableRes = drawableRes,
+                isSelf = true,
+                duration = 2500L
+            )
         }
 
 
