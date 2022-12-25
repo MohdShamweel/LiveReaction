@@ -57,7 +57,7 @@ Other performReaction params
      * @param isSelf : when true the the onScreenMaxCount is neglected
      * @param duration : The duration to on-screen animation
      */
-    reactionViewFourth.performLiveReaction(
+    reactionView.performLiveReaction(
                 drawableRes = R.id.ic_heart_filled_red,
                 isSelf = true,
                 duration = 2000L
